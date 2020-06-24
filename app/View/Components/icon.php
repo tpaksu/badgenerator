@@ -37,7 +37,7 @@ class icon extends Component
         if (!empty($this->path)) {
             $path = rtrim(public_path(), "/") . "/" . ltrim($this->path, "/");
             if (file_exists($path)) {
-                return $this->applyClass(file_get_contents($path));
+                return $this->applyClass(file_get_contents($path)) ?? "";
             }
         }
         return "";
