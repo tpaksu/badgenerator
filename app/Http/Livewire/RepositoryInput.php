@@ -40,19 +40,32 @@ class RepositoryInput extends Component
         $validDomains = collect(config("badgenerator"))->keys();
         $validSchemes = ["https", "http"];
 
-        if (!isset($parts["host"]) || $validDomains->contains($parts["host"]) == false) {
+        if (
+            !isset($parts["host"]) ||
+            empty($parts["host"]) ||
+            $validDomains->contains(str_replace("www.", "", $parts["host"])) == false
+        ) {
             return false;
         }
 
-        if (!isset($parts["scheme"]) || !in_array($parts["scheme"], $validSchemes)) {
+        if (
+            !isset($parts["scheme"]) ||
+            empty($parts["scheme"]) ||
+            !in_array($parts["scheme"], $validSchemes)
+        ) {
             return false;
         }
 
-        if (!isset($parts["path"]) || substr_count(rtrim($parts["path"], "/"), "/", 1) !== 1) {
+        if (
+            !isset($parts["path"]) ||
+            empty($parts["path"]) ||
+            substr_count(rtrim($parts["path"], "/"), "/", 1) !== 1
+        ) {
             return false;
         }
 
         $client = new Client();
+
         try {
             $client->head($this->query);
             return true;
@@ -66,6 +79,7 @@ class RepositoryInput extends Component
         $this->badges = [];
 
         $parts = parse_url($this->query);
+        $parts["host"] = str_replace("www.", "", $parts["host"]);
         $host = $parts["host"];
         $config = config("badgenerator", []);
 
@@ -75,14 +89,13 @@ class RepositoryInput extends Component
         }
 
         $config = $config[$host];
-        $format = "/" .str_replace("/" , "\\/",  trim($config["format"], "/ ")) . "/";
+        $format = "/" . str_replace("/", "\\/", trim($config["format"], "/ ")) . "/";
 
         preg_match($format, $this->query, $matches);
 
         list($username, $repository) = [$matches["username"], $matches["repository"]];
 
-        foreach($config["badges"] as $badge)
-        {
+        foreach ($config["badges"] as $badge) {
             $title = $badge["title"];
             $linkUrl = str_replace("[repository]", $repository, str_replace("[username]", $username, $badge["link"]));
             $imageUrl = str_replace("[repository]", $repository, str_replace("[username]", $username, $badge["badge"]));
@@ -94,7 +107,7 @@ class RepositoryInput extends Component
                 "linkUrl" => $linkUrl,
                 "imageUrl" => $imageUrl,
                 "text" => $text,
-                "markdown" => $markdown
+                "markdown" => $markdown,
             ];
         }
     }
