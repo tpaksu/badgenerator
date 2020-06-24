@@ -1,1 +1,3 @@
+@isset($contents)
 {!!$contents!!}
+@endisset
