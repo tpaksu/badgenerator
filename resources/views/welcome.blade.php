@@ -10,7 +10,7 @@
                 </h1>
                 @livewire("repository-input")
             </div>
-            <div class="my-10 mx-auto text-gray-400">Currently supports <a href="https://github.com/" target="_blank">github.com</a> repositories, you can create a PR after you add your own badges inside <code>config/badgenerator.php</code> file.</div>
+            <div class="my-10 mx-auto max-w-screen-sm text-center text-gray-400">Currently supports <a href="https://github.com/" target="_blank">github.com</a> repositories, but you can create a PR after you add your own badges inside <code>config/badgenerator.php</code> file.</div>
         </div>
     </div>
 </div>

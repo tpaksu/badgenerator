@@ -36,6 +36,10 @@
                 font-size: 80px !important;
             }
         }
+
+        code {
+            color: green;
+        }
     </style>
 </head>
 
