@@ -4,7 +4,7 @@
             <input
                 class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none text-center"
                 type="text"
-                placeholder="Enter Repository URL"
+                placeholder="Enter repository full URL"
                 aria-label="Repository Path"
                 wire:model.debounce.500ms="query"
             >
