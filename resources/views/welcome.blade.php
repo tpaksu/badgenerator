@@ -15,5 +15,5 @@
         </div>
     </div>
 </div>
-<footer class="inset-x-0 bottom-0 p-4 fixed bg-white text-center"><div class="mx-auto text-sm text-gray-600">Copyright ©{{\Carbon\Carbon::now()->year}} Taha PAKSU</div></footer>
+<footer class="inset-x-0 bottom-0 p-6 fixed bg-white text-center border-t border-gray-300"><div class="mx-auto text-sm text-gray-600">Copyright ©{{\Carbon\Carbon::now()->year}} Taha PAKSU</div></footer>
 @endsection

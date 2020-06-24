@@ -27,10 +27,6 @@
             font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
 
-        body {
-            margin-bottom: 100px;
-        }
-
         .logo {
             font-size: 60px;
         }
@@ -45,7 +41,6 @@
 
 <body>
     @yield('body')
-
     <script src="{{ mix('js/app.js') }}"></script>
     @livewireScripts
 </body>
